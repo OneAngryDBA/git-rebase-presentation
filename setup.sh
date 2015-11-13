@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 mkdir "$HOME/bpg-1-rebase"
-git clone --bare --recursive git@github.com:OneAngryDBA/git-rebase-presentation.git "$HOME/bpg-1-rebase/origin"
-git clone --recursive -l "$HOME/bpg-1-rebase/origin" bpg-1-rebase/merge
-git clone --recursive -l "$HOME/bpg-1-rebase/origin" bpg-1-rebase/rebase
+git clone git@github.com:OneAngryDBA/git-rebase-presentation.git "$HOME/bpg-1-rebase/origin"
+cd "$HOME/bpg-1-rebase/origin"
+for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
+   git branch --track ${branch#remotes/origin/} $branch
+done
+git clone -l "$HOME/bpg-1-rebase/origin" "$HOME/bpg-1-rebase/merge"
+git clone -l "$HOME/bpg-1-rebase/origin" "$HOME/bpg-1-rebase/rebase"
