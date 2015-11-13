@@ -7,4 +7,13 @@ for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; d
    git branch --track ${branch#remotes/origin/} $branch
 done
 git clone -l "$HOME/bpg-1-rebase/origin" "$HOME/bpg-1-rebase/merge"
+cd "$HOME/bpg-1-rebase/merge"
+for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
+   git branch --track ${branch#remotes/origin/} $branch
+done
 git clone -l "$HOME/bpg-1-rebase/origin" "$HOME/bpg-1-rebase/rebase"
+cd "$HOME/bpg-1-rebase/rebase"
+for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
+   git branch --track ${branch#remotes/origin/} $branch
+done
+
